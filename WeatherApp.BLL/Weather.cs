@@ -77,7 +77,8 @@ namespace WeatherApp.BLL
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             // EN - sets dot instead of comma, in order for link to work
-            // PL - ustawia kropkê przy wypisnywaniu jako przecinek, inaczej api nie zadzia³a.
+            // PL - ustawia kropkê przy wypisnywaniu zamiast przecinka, inaczej api nie zadzia³a.
+            // 13,2 -> 13.2
 
             using (HttpClient client = new HttpClient())
             {
