@@ -29,5 +29,36 @@
         <Label x:Name="LonLabel" Content="Lon:" HorizontalAlignment="Left" Height="25" Margin="25,83,0,0" VerticalAlignment="Top" Width="121"/>
         <Label x:Name="TimezoneLabel" Content="Unknown" HorizontalAlignment="Left" Height="25" Margin="25,136,0,0" VerticalAlignment="Top" Width="121"/>
         <Image HorizontalAlignment="Left" Height="434" Margin="204,0,0,0" VerticalAlignment="Center" Width="596" Panel.ZIndex="-2"/>
+        <StackPanel>
+            <ListBox x:Name="lb"
+            Opacity="0">
+                <ListBoxItem Content="A" />
+                <ListBoxItem Content="B" />
+            </ListBox>
+            <TextBox Width="270">
+                <TextBox.Triggers>
+                    <EventTrigger RoutedEvent="UIElement.GotFocus">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0"
+                              Storyboard.TargetName="lb"
+                              Storyboard.TargetProperty="(UIElement.Opacity)"
+                              To="1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="UIElement.LostFocus">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0"
+                              Storyboard.TargetName="lb"
+                              Storyboard.TargetProperty="(UIElement.Opacity)"
+                              To="0" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBox.Triggers>
+            </TextBox>
+        </StackPanel>
     </Grid>
 </Window>

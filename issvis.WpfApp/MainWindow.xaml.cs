@@ -23,11 +23,12 @@ namespace SimpleWeather.WpfApp
     public partial class MainWindow : Window
     {
         Weather weather = new Weather();
-        public async void loadApiAsync()
+        Geocoding geocoding = new Geocoding();
+        public async Task loadApiAsync(double lat = 50.8, double lon = 19.7)
         {
             try
             {
-                weather = await weather.getWeatherAsync(50.8, 19.7);
+                weather = await weather.getWeatherAsync(lat, lon);
                 
             }
             catch (Exception ex) { }
@@ -40,10 +41,21 @@ namespace SimpleWeather.WpfApp
             WindSpeedLabel.Content = "Prękość wiatru: " + weather.current_weather.windspeed.ToString() + "km/h";
 
         }
+        public async void geoApi(string city = "Czestochowa")
+        {
+            try
+            {
+                geocoding = await geocoding.getCordsAsync(city);
+                //Console.WriteLine(geocoding.features[0].geometry.type);
+                await loadApiAsync(geocoding.features[0].geometry.coordinates[1], geocoding.features[0].geometry.coordinates[0]);
+            }
+            catch (Exception ex) { }
+        }
         public MainWindow()
         {
             InitializeComponent();
-            loadApiAsync();
+            geoApi();
+
         }
 
         private async void Refresh_click(object sender, RoutedEventArgs e)
