@@ -39,6 +39,67 @@ namespace SimpleWeather.WpfApp
             WindDirLabel.Content = "Kierunek wiatru: " + weather.current_weather.winddirection.ToString() + "°";
             WindSpeedLabel.Content = "Prękość wiatru: " + weather.current_weather.windspeed.ToString() + "km/h";
             TimezoneLabel.Content = weather.timezone.ToString() + ", " + weather.timezone_abbreviation;
+            string s = "";
+            switch (weather.current_weather.weathercode)
+            {
+                case 0:
+                    s = "Czyste Niebo";
+                    break;
+                case 1:
+                    s = "Pojedyncze chmury";
+                    break;
+                case 2:
+                    s = "Częściowe zachmurzenie";
+                    break;
+                case 3:
+                    s = "Pochmurno";
+                    break;
+                case 45:
+                case 48:
+                    s = "Mgliście";
+                    break;
+                case 51:
+                case 53:
+                case 55:
+                    s = "Mżawka";
+                    break;
+                case 56:
+                case 57:
+                    s = "Zimna mżawka";
+                    break;
+                case 61:
+                case 63:
+                case 65:
+                    s = "Deszcz";
+                    break;
+                case 66:
+                case 67:
+                    s = "Zimny deszcz";
+                    break;
+                case 71:
+                case 73:
+                case 75:
+                    s = "Śnieg";
+                    break;
+                case 77:
+                    s = "Gruby śnieg";
+                    break;
+                case 80:
+                case 81:
+                case 82:
+                    s = "Ulewa";
+                    break;
+                case 85:
+                case 86:
+                    s = "Zawieja śnieżna";
+                    break;
+                case 95:
+                case 96:
+                case 99:
+                    s = "Burza";
+                    break;
+            }
+            WeatherCondLabel.Content = s;
         }
         public async void geoApi(string city = "Czestochowa")
         {

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:issvis.WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Weather App" Height="450" Width="800">
     <Grid>
         <Label x:Name="TempLabel" Content="0°C" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Height="117" Width="158" VerticalAlignment="Center" FontSize="48"/>
-        <Label x:Name="CityLabel" Content="Brak" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Height="48" Width="312" VerticalAlignment="Top" FontSize="24" Margin="0,100,0,0"/>
+        <Label x:Name="CityLabel" Content="Brak połączenia z internetem" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Height="48" Width="326" VerticalAlignment="Top" FontSize="24" Margin="0,100,0,0"/>
         <Label x:Name="GeoCordsLabel" Content="Współrzędne geo:" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="28" VerticalAlignment="Top" Width="312" Margin="0,67,0,0"/>
         <Label x:Name="TimezoneLabel" Content="Strefa czasowa:" HorizontalAlignment="Left" Height="28" Margin="25,366,0,0" VerticalAlignment="Top" Width="176"/>
         <Path StrokeThickness="2" Stroke="Black" Data="M 10 0 L 16 4 L 10 8 M 0 4 L 16 4"  Height="20" Stretch="Fill" Width="40" VerticalAlignment="Top" HorizontalAlignment="Center" Panel.ZIndex="2" Margin="0,293,0,0" RenderTransformOrigin="0.5,0.5">
@@ -28,5 +28,6 @@
         <TextBox x:Name="SearchBar" Text="Częstochowa" Width="270" VerticalContentAlignment="Center" Height="30" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="3" Margin="234,14,0,0" KeyDown="OnEnterHandler"/>
         <Button Content="Szukaj" HorizontalAlignment="Left" Height="30" Margin="509,13,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.519,0.522" Click="GetCityFromGeo_Click"/>
         <Rectangle x:Name="MainRectangle" HorizontalAlignment="Center" Height="434" VerticalAlignment="Center" Width="800" Panel.ZIndex="-2" Fill="#FF16B0E4"/>
+        <Label x:Name="WeatherCondLabel" Content="Brak chmur" HorizontalAlignment="Left" Height="28" Margin="25,333,0,0" VerticalAlignment="Top" Width="176"/>
     </Grid>
 </Window>
