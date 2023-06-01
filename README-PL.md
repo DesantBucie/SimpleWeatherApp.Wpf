@@ -10,6 +10,8 @@ Aplikacja używa dwóch API.
 
 1. Drugie z nich to https://photon.komoot.io. Służy do przekonwertowania nazwy miejsca na współrzędne geograficzne, które wysyłam do open-meteo.com. Na ten moment(mogło ulec zmianie od pisania tego), niestety nie wyświetla się lista miejsc o tej samej nazwie a różnych. Kiedy wpiszemy Moscow, nie wyświetli się więc Moskwa, stolica Rosji, tylko jakieś miasteczko w USA. Musimy wpisać Moskva, a więc angielską nazwę.
 
+   ![](.assets/dayapp2.png)
+
 ### Działanie
 
 Aplikacja ma zaimplementowane pobieranie i przypisywanie danych z API w projekcie BLL, który jest biblioteką klas WPF. Za pobieranie danych odpowiada wbudowana biblioteka HTTP(using System.Net.Http), za deserializację JSONa, biblioteka od NewtonSoftu, ponieważ systemowa miała problemy z tablicami. Klasy Weather is GeoCoding(oraz ich pochodne) są wymodelowane a ich pola nazwane według zwracanego obiektu typu JSON.
@@ -71,8 +73,43 @@ weather = JsonSerializer.Deserialize<Weather>(empResponse);
 
 Teraz możemy użyć danych w MainWindow.xaml.cs.
 
+```csharp
+public async Task loadApiAsync(double lat = 50.8, double lon = 19.7)    
+{
+            try
+            {
+                weather = await weather.getWeatherAsync(lat, lon);
+                
+            }
+            catch (Exception ex) { }
+  //[...]
+}
+```
 
+Wywołujemy geoApi w konstruktorze, która pobiera miasto(domyślnie Częstochowa i zwraca dług. i szer. geograficzną, a następnie wywołujemy loadApiAsync, które ustawi wszystkie pola w GUI).
 
+### GUI
 
+![Zdjęcie Programu](.assets/dayapp.png)
 
+GUI jest proste i składa się z kilku Pól typu Label, jednego TextBoxa, dwóch przycisków.
+
+* **TextBox** - służy do wpisywania nazwy miasta. Na tym etapie nie rozwija się lista z której można wybrać konkretne miasto(jeżeli jest kilka o tej samej nazwie).
+
+* **Przycisk Szukaj** - Do potwierdzenia wyszukania miasta. Można alternatywnie potwierdzić klawiszem enter.
+* **Odśwież** - Odświeża dane na temat pogody.
+
+Na ekranie widać też:
+
+* Stan pogody,
+* Strefę czasową
+* Współrzędne geograficzne
+* Nazwę miasta
+* Temperaturę w stopniach Celsjusza
+* Zwizualizowany kierunek wiatru
+* Prędkość wiatru.
+
+Aplikacja zmienia też kolor na ciemniejszy, przyjemniejszy dla oka w nocy kiedy zmienna z API is_day jest równa 0, a także w zależności od pogody.
+
+![](.assets/nightapp.png)
 

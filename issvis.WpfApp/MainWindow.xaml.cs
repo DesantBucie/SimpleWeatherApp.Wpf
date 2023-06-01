@@ -31,7 +31,9 @@ namespace SimpleWeather.WpfApp
                 weather = await weather.getWeatherAsync(lat, lon);
                 
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                MessageBox.Show(ex);
+            }
             TempLabel.Content = weather.current_weather.temperature.ToString() + "°C";
             GeoCordsLabel.Content = weather.latitude > 0 ? weather.latitude + "N, " : weather.latitude + "S ";
             GeoCordsLabel.Content += weather.longitude > 0 ? weather.longitude + "E " : weather.longitude + "W ";
@@ -110,7 +112,9 @@ namespace SimpleWeather.WpfApp
                 CityLabel.Content = geocoding.features[0].properties.name;
                 await loadApiAsync(geocoding.features[0].geometry.coordinates[1], geocoding.features[0].geometry.coordinates[0]);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { 
+                MessageBox.Show(ex);
+            }
         }
         public MainWindow()
         {
