@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:issvis.WpfApp"
         mc:Ignorable="d"
-        Title="Weather App" Height="450" Width="800">
+        Title="Weather App" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid>
         <Label x:Name="TempLabel" Content="0°C" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Height="117" Width="158" VerticalAlignment="Center" FontSize="48"/>
         <Label x:Name="CityLabel" Content="Brak połączenia z internetem" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Height="48" Width="326" VerticalAlignment="Top" FontSize="24" Margin="0,100,0,0"/>
